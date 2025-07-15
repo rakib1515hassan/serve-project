@@ -4,11 +4,11 @@ export const langContent = {
     yes: "Yes",
     no: "No",
     buttonFurther: "Further",
-    buttonFurther: "Further",
     buttonBack: "Back",
 
     question1: "Do you have pets?",
     question2: "Do you have a dog, cat or something else?",
+    question3: "Are You Thinking about getting a pet?",
   },
 
 
@@ -22,6 +22,7 @@ export const langContent = {
 
     question1: "Hast du Haustiere?",
     question2: "Wähle fur ein Hautier hast du aktuell bei dir",
+    question3: "Kommt ein Haustier fur dich in Frage?",
   },
 };
 

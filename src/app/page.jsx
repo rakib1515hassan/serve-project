@@ -30,11 +30,12 @@ export default function StepManager() {
           question={t.question1}
           onAnswer={handleYesNoAnswer}
           back={null}
-          next={goToNext} // still used if needed
+          //next={goToNext} // still used if needed
         />
       );
 
     case 2:
+      console.log("Step 2 - has_pet:", answers.has_pet); // ✅ Debugging line
       if (answers.has_pet === "1") {
         return (
           <ChoseComponent
@@ -46,7 +47,12 @@ export default function StepManager() {
         );
       } else {
         return (
-          <NoPatComponent back={goToPrev} />
+          <YesNoQuestionComponent
+            progress={12}
+            question={t.question3}
+            onAnswer={handleYesNoAnswer}
+            back={null}
+          />
         );
       }
 
