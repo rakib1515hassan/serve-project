@@ -1,12 +1,17 @@
 "use client";
 import React from "react";
+import { FaArrowLeft } from "react-icons/fa";
+import { langContent } from "@/lib/langContent";
 
-export default function HeaderComponent({ title = "", progress = 0 }) {
+const lang = process.env.NEXT_PUBLIC_ACTIVE_LANGUAGE || "EN";
+const t = langContent[lang];
+
+export default function HeaderComponent({ progress = 0 }) {
   return (
     <div className="w-full px-4">
       {/* Header Title */}
       <div className="text-center text-2xl md:text-3xl font-bold mt-6">
-        {title}
+        {t.title}
       </div>
 
       {/* Progress Bar */}

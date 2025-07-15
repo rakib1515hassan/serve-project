@@ -4,7 +4,6 @@ import HeaderComponent from "@/components/layout/HeaderComponent";
 import FooterComponent from "@/components/layout/FooterComponent";
 
 export default function YesNoQuestionComponent({
-  title = "animalistic.",
   progress = 0,
   question = "Ask question",
   back,
@@ -31,7 +30,7 @@ export default function YesNoQuestionComponent({
       onSubmit={handleSubmit}
       className="min-h-screen flex flex-col bg-[#f8f4ee] text-[#4A4A4A]"
     >
-      <HeaderComponent title={title} progress={progress} />
+      <HeaderComponent progress={progress} />
 
       {/* Question Text */}
       <div className="text-center mt-10 px-4 text-xl font-semibold">

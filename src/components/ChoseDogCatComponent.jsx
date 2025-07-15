@@ -4,7 +4,6 @@ import HeaderComponent from "@/components/layout/HeaderComponent";
 import FooterComponent from "@/components/layout/FooterComponent";
 
 export default function ChoseComponent({
-   title = "animalistic.",
    progress = 0,
    question = "Was fur ein Hautier hast du aktuell bei dir ?",
    back,
@@ -31,7 +30,7 @@ export default function ChoseComponent({
          onSubmit={handleSubmit}
          className="min-h-screen flex flex-col bg-[#f8f4ee] text-[#4A4A4A]"
       >
-         <HeaderComponent title={title} progress={progress} />
+         <HeaderComponent progress={progress} />
 
          {/* Question Text */}
          <div className="text-center mt-10 text-xl font-semibold px-4">

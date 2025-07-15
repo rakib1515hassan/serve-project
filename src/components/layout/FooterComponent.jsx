@@ -1,5 +1,10 @@
 "use client";
+import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import { langContent } from "@/lib/langContent";
+
+const lang = process.env.NEXT_PUBLIC_ACTIVE_LANGUAGE || "EN";
+const t = langContent[lang];
 
 export default function FooterComponent({
   backHref,
@@ -14,7 +19,7 @@ export default function FooterComponent({
         {backHref ? (
           <Link href={backHref} className="flex items-center gap-2 text-sm">
             <FaArrowLeft />
-            <span>Back</span>
+            <span>{t.buttonBack}</span>
           </Link>
         ) : onBack ? (
           <button
@@ -23,7 +28,7 @@ export default function FooterComponent({
             className="flex items-center gap-2 text-sm"
           >
             <FaArrowLeft />
-            <span>Back</span>
+            <span>{t.buttonBack}</span>
           </button>
         ) : (
           <div />
@@ -35,14 +40,14 @@ export default function FooterComponent({
             href={nextHref}
             className="bg-white text-[#4A3A2D] px-4 py-2 text-sm rounded-full font-medium hover:bg-gray-100 transition"
           >
-            Further
+            {t.buttonFurther}
           </Link>
         ) : isSubmit ? (
           <button
             type="submit"
             className="bg-white text-[#4A3A2D] px-4 py-2 text-sm rounded-full font-medium hover:bg-gray-100 transition"
           >
-            Further
+            {t.buttonFurther}
           </button>
         ) : (
           <div />
