@@ -15,12 +15,20 @@ export default function StepManager() {
   const goToNext = () => setStep((prev) => prev + 1);
   const goToPrev = () => setStep((prev) => prev - 1);
 
-  const handleYesNoAnswer = (answer) => {
-    const newAnswers = { ...answers, has_pet: answer };
+  const handleQuestion1Answer = (answer) => {
+    const newAnswers = { ...answers, question1_ans: answer };
     setAnswers(newAnswers);
-    localStorage.setItem("has_pet", answer);
+    localStorage.setItem("question1_ans", answer);
     goToNext(); // move to step 2
   };
+
+  const handleQuestion3Answer = (answer) => {
+    const newAnswers = { ...answers, question3_ans: answer };
+    setAnswers(newAnswers);
+    localStorage.setItem("question3_ans", answer);
+    goToNext();
+  };
+
 
   switch (step) {
     case 1:
@@ -28,15 +36,15 @@ export default function StepManager() {
         <YesNoQuestionComponent
           progress={12}
           question={t.question1}
-          onAnswer={handleYesNoAnswer}
+          onAnswer={handleQuestion1Answer}
           back={null}
           //next={goToNext} // still used if needed
         />
       );
 
     case 2:
-      console.log("Step 2 - has_pet:", answers.has_pet); // ✅ Debugging line
-      if (answers.has_pet === "1") {
+      console.log("Step 2 - question1_ans:", answers.question1_ans); // ✅ Debugging line
+      if (answers.question1_ans === "1") {
         return (
           <ChoseComponent
             progress={25}
@@ -50,8 +58,8 @@ export default function StepManager() {
           <YesNoQuestionComponent
             progress={12}
             question={t.question3}
-            onAnswer={handleYesNoAnswer}
-            back={null}
+            onAnswer={handleQuestion3Answer}
+            back={goToPrev}
           />
         );
       }
