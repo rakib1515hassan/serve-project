@@ -23,9 +23,10 @@ export default function Home() {
   return (
     <YesNoQuestionComponent
       title="tierlich."
-      progress={0}
+      progress={12}
       question="Hast du Haustiere ?"
       onAnswer={handleAnswer}
+      backHref="/page1"
       nextHref="/page2"
     />
   );

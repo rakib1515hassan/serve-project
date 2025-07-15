@@ -11,10 +11,10 @@ export default function YesNoQuestionComponent({
   nextHref,
   onAnswer,
 }) {
-  const [selected, setSelected] = useState(null); // 'ja' or 'nein'
+  const [selected, setSelected] = useState(null);
 
   const handleAnswer = (answer) => {
-    setSelected(answer); // ✅ Track selected button
+    setSelected(answer);
     if (onAnswer) onAnswer(answer);
   };
 
@@ -25,10 +25,11 @@ export default function YesNoQuestionComponent({
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f4ee] text-[#4A4A4A]">
+      {/* Header */}
       <HeaderComponent title={title} progress={progress} />
 
-      {/* Frage Text */}
-      <div className="text-center mt-10 text-xl font-semibold">
+      {/* Question Text */}
+      <div className="text-center mt-10 px-4 text-xl font-semibold">
         {typeof question === "string" ? (
           <p>{question}</p>
         ) : (
@@ -36,11 +37,11 @@ export default function YesNoQuestionComponent({
         )}
       </div>
 
-      {/* Ja / Nein Buttons */}
-      <div className="flex flex-col gap-4 items-center justify-center mt-10">
+      {/* Answer Buttons */}
+      <div className="flex flex-col gap-4 items-center justify-center mt-10 px-4">
         <button
           onClick={() => handleAnswer("ja")}
-          className={`w-64 h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
+          className={`w-full max-w-xs h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
             "ja"
           )}`}
         >
@@ -48,7 +49,7 @@ export default function YesNoQuestionComponent({
         </button>
         <button
           onClick={() => handleAnswer("nein")}
-          className={`w-64 h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
+          className={`w-full max-w-xs h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
             "nein"
           )}`}
         >
@@ -56,6 +57,7 @@ export default function YesNoQuestionComponent({
         </button>
       </div>
 
+      {/* Footer */}
       <FooterComponent backHref={backHref} nextHref={nextHref} />
     </div>
   );
