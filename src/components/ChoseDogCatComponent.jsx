@@ -14,7 +14,7 @@ export default function ChoseComponent({
 
    // ✅ Load previous selection from sessionStorage
    useEffect(() => {
-      const stored = sessionStorage.getItem("pet_type");
+      const stored = sessionStorage.getItem("question2_ans");
       if (stored) {
          setSelected(stored);
       }
@@ -23,7 +23,7 @@ export default function ChoseComponent({
    const handleSubmit = (e) => {
       e.preventDefault();
       if (selected) {
-         sessionStorage.setItem("pet_type", selected); // ✅ store in sessionStorage
+         sessionStorage.setItem("question2_ans", selected); // ✅ store in sessionStorage
          if (next) next();
       }
    };
