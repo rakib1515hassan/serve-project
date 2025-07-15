@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HeaderComponent from "@/components/layout/HeaderComponent";
 import FooterComponent from "@/components/layout/FooterComponent";
 
@@ -12,11 +12,19 @@ export default function ChoseComponent({
    const options = ["🐶", "🐱", "🐶🐱", "Text"];
    const [selected, setSelected] = useState(null);
 
+   // ✅ Load previous selection from sessionStorage
+   useEffect(() => {
+      const stored = sessionStorage.getItem("pet_type");
+      if (stored) {
+         setSelected(stored);
+      }
+   }, []);
+
    const handleSubmit = (e) => {
       e.preventDefault();
       if (selected) {
-         localStorage.setItem("pet_type", selected);
-         if (next) next(); // Go to next step if available
+         sessionStorage.setItem("pet_type", selected); // ✅ store in sessionStorage
+         if (next) next();
       }
    };
 
