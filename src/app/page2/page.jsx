@@ -1,5 +1,5 @@
 "use client";
-import YesNoQuestionComponent from "@/components/YesNoQuestionComponent";
+import YesNoQuestionComponent from "@/components/utils/YesNoQuestionComponent";
 
 export default function Page2() {
   return (

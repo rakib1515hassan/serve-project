@@ -7,15 +7,18 @@ export default function YesNoQuestionComponent({
   title = "animalistic.",
   progress = 0,
   question = "Ask question",
-  backHref,
-  nextHref,
+  back,
+  next,
   onAnswer,
 }) {
   const [selected, setSelected] = useState(null);
 
-  const handleAnswer = (answer) => {
-    setSelected(answer);
-    if (onAnswer) onAnswer(answer);
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submit
+    if (selected && onAnswer) {
+      onAnswer(selected); // send selected answer to parent
+      if (next) next(); // go to next step
+    }
   };
 
   const getButtonStyle = (option) =>
@@ -24,8 +27,10 @@ export default function YesNoQuestionComponent({
       : "bg-[#4A3A2D] text-white";
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f4ee] text-[#4A4A4A]">
-      {/* Header */}
+    <form
+      onSubmit={handleSubmit}
+      className="min-h-screen flex flex-col bg-[#f8f4ee] text-[#4A4A4A]"
+    >
       <HeaderComponent title={title} progress={progress} />
 
       {/* Question Text */}
@@ -40,7 +45,8 @@ export default function YesNoQuestionComponent({
       {/* Answer Buttons */}
       <div className="flex flex-col gap-4 items-center justify-center mt-10 px-4">
         <button
-          onClick={() => handleAnswer("ja")}
+          type="button"
+          onClick={() => setSelected("ja")}
           className={`w-full max-w-xs h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
             "ja"
           )}`}
@@ -48,7 +54,8 @@ export default function YesNoQuestionComponent({
           Ja
         </button>
         <button
-          onClick={() => handleAnswer("nein")}
+          type="button"
+          onClick={() => setSelected("nein")}
           className={`w-full max-w-xs h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
             "nein"
           )}`}
@@ -57,8 +64,7 @@ export default function YesNoQuestionComponent({
         </button>
       </div>
 
-      {/* Footer */}
-      <FooterComponent backHref={backHref} nextHref={nextHref} />
-    </div>
+      <FooterComponent onBack={back} isSubmit />
+    </form>
   );
 }
