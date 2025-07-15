@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import YesNoQuestionComponent from "@/components/utils/YesNoQuestionComponent";
+import SelectableChoicesComponent from "@/components/utils/SelectableChoicesComponent";
 import ChoseComponent from "@/components/ChoseDogCatComponent";
 import { langContent } from "@/lib/langContent";
 
@@ -74,6 +75,37 @@ export default function StepManager() {
                />
             );
          }
+
+      case 3: {
+         const petType = sessionStorage.getItem("question2_ans");
+         let question = "";
+
+         switch (petType) {
+            case "🐱":
+               question = t.question4;
+               break;
+            case "🐶":
+               question = t.question5;
+               break;
+            case "🐶🐱":
+               question = t.question6;
+               break;
+            case "Text":
+               question = t.question7;
+               break;
+            default:
+               question = "Invalid pet type!";
+         }
+
+         return (
+            <SelectableChoicesComponent
+               progress={45}
+               question={question}
+               back={() => setStep(2)}
+               next={() => setStep(4)}
+            />
+         );
+      }
 
       default:
          return <div className="text-center mt-10">End of steps</div>;
