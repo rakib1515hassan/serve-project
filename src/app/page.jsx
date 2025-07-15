@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import YesNoQuestionComponent from "@/components/YesNoQuestionComponent";
+import ChoseComponent from "@/components/ChoseComponent";
 
 export default function Home() {
   const router = useRouter();
@@ -14,9 +15,8 @@ export default function Home() {
 
     // ✅ Navigate based on answer
     if (answer === "ja") {
-      // router.push("/page2"); // Example: question set A
+      <ChoseComponent/>
     } else {
-      // router.push("/page5"); // Example: question set B
     }
   };
 
