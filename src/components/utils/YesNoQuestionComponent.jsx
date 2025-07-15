@@ -3,6 +3,8 @@ import { useState } from "react";
 import HeaderComponent from "@/components/layout/HeaderComponent";
 import FooterComponent from "@/components/layout/FooterComponent";
 
+import { langContent } from "@/lib/langContent";
+
 export default function YesNoQuestionComponent({
   progress = 0,
   question = "Ask question",
@@ -12,11 +14,15 @@ export default function YesNoQuestionComponent({
 }) {
   const [selected, setSelected] = useState(null);
 
+  // 🌐 Load language strings
+  const lang = process.env.NEXT_PUBLIC_ACTIVE_LANGUAGE || "EN";
+  const t = langContent[lang];
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submit
-    if (selected && onAnswer) {
+    e.preventDefault();
+    if (selected !== null && onAnswer) {
       onAnswer(selected); // send selected answer to parent
-      if (next) next(); // go to next step
+      if (next) next();   // move to next step
     }
   };
 
@@ -45,24 +51,25 @@ export default function YesNoQuestionComponent({
       <div className="flex flex-col gap-4 items-center justify-center mt-10 px-4">
         <button
           type="button"
-          onClick={() => setSelected("ja")}
+          onClick={() => setSelected("1")} // ✅ Yes
           className={`w-full max-w-xs h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
-            "ja"
+            "1"
           )}`}
         >
-          Ja
+          {t.yes}
         </button>
         <button
           type="button"
-          onClick={() => setSelected("nein")}
+          onClick={() => setSelected("0")} // ✅ No
           className={`w-full max-w-xs h-14 rounded-xl text-lg font-semibold hover:opacity-90 transition ${getButtonStyle(
-            "nein"
+            "0"
           )}`}
         >
-          Nein
+          {t.no}
         </button>
       </div>
 
+      {/* Footer */}
       <FooterComponent onBack={back} isSubmit />
     </form>
   );

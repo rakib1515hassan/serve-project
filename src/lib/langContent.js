@@ -1,6 +1,9 @@
 export const langContent = {
   EN: {
     title: "animalistic.",
+    yes: "Yes",
+    no: "No",
+    buttonFurther: "Further",
     buttonFurther: "Further",
     buttonBack: "Back",
 
@@ -12,6 +15,8 @@ export const langContent = {
 
   DE: {
     title: "tierlich.",
+    yes: "Ja",
+    no: "Nein",
     buttonFurther: "Weiter",
     buttonBack: "Zuruck",
 
